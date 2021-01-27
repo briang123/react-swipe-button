@@ -24,7 +24,7 @@ export default class ReactSwipeButton extends Component {
   }
 
   onDrag =e=> {
-    if(this.unmounted || this.state.unlocked) return;
+    if(this.unmounted || this.state.unlocked || !e) return;
     if(this.isDragging) {
       if(isTouchDevice) {
         this.sliderLeft = Math.min(Math.max(0, e.touches[0].clientX - this.startX), this.containerWidth);
@@ -61,7 +61,7 @@ export default class ReactSwipeButton extends Component {
   }
 
   startDrag =e=> {
-    if(this.unmounted || this.state.unlocked) return;
+    if(this.unmounted || this.state.unlocked || !e) return;
     this.isDragging = true;
     if(isTouchDevice) {
       this.startX = e.touches[0].clientX;
